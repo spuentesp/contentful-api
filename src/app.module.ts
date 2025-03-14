@@ -5,9 +5,14 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
+import { ContentfulService } from './contentful/contentful.service';
+import { ContentfulCronService } from './contentful-cron/contentful-cron.service';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -23,8 +28,10 @@ import { UsersModule } from './users/users.module';
     }),
     AuthModule,
     UsersModule,
+    ProductsModule,
+     ScheduleModule.forRoot()
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ContentfulService, ContentfulCronService],
 })
 export class AppModule {}
