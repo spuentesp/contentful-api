@@ -1,5 +1,5 @@
 # Usa Node.js como base
-FROM node:20-alpine
+FROM node:lts
 
 # Establecer el directorio de trabajo
 WORKDIR /app
