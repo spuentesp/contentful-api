@@ -25,7 +25,7 @@ export class ProductsController {
   @ApiQuery({ name: 'minPrice', required: false, type: Number })
   @ApiQuery({ name: 'maxPrice', required: false, type: Number })
   findAll(
-    @Query('page', ParseIntPipe) page = 1,
+    @Query('page', ParseIntPipe) page:number = 1,
     @Query('name') name?: string,
     @Query('category') category?: string,
     @Query('minPrice') minPrice?: number,
