@@ -9,6 +9,7 @@ import { ProductsModule } from './products/products.module';
 import { ContentfulService } from './contentful/contentful.service';
 import { ContentfulCronService } from './contentful-cron/contentful-cron.service';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ContentfulController } from './contentful/contentful.controller';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     ProductsModule,
      ScheduleModule.forRoot()
   ],
-  controllers: [AppController],
+  controllers: [AppController, ContentfulController],
   providers: [AppService, ContentfulService, ContentfulCronService],
 })
 export class AppModule {}
