@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Contentful API')
-    .setDescription('API para sincronizar productos de Contentful')
+    .setDescription('API for synchronizing products from Contentful')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
