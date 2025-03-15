@@ -10,6 +10,7 @@ import { ContentfulService } from './contentful/contentful.service';
 import { ContentfulCronService } from './contentful-cron/contentful-cron.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ContentfulController } from './contentful/contentful.controller';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { ContentfulController } from './contentful/contentful.controller';
     AuthModule,
     UsersModule,
     ProductsModule,
-     ScheduleModule.forRoot()
+     ScheduleModule.forRoot(),
+     ReportsModule
   ],
   controllers: [AppController, ContentfulController],
   providers: [AppService, ContentfulService, ContentfulCronService],

@@ -3,6 +3,7 @@ import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ContentfulCronService } from '../contentful-cron/contentful-cron.service';
 
 describe('ProductsController', () => {
   let controller: ProductsController;
@@ -24,6 +25,10 @@ describe('ProductsController', () => {
     deleted: false,
   };
 
+  const mockContentfulCronService = {
+    handleCron: jest.fn(), 
+  };
+
   const mockProductsService = {
     create: jest.fn().mockResolvedValue(mockProduct),
     findAll: jest.fn().mockResolvedValue({ data: [mockProduct], total: 1 }),
@@ -35,7 +40,9 @@ describe('ProductsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ProductsController],
-      providers: [{ provide: ProductsService, useValue: mockProductsService }],
+      
+      providers: [{ provide: ProductsService, useValue: mockProductsService },
+        { provide: ContentfulCronService, useValue: mockContentfulCronService }, ],
     }).compile();
 
     controller = module.get<ProductsController>(ProductsController);
